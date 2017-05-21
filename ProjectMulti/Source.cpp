@@ -14,9 +14,7 @@ int summ = 0;
 
 int main()
 {
-	Utility util;
-	cout << "end of code" << endl;
-	/*for (int i = 1; i <= 55; i++)
+	for (int i = 1; i <= 55; i++)
 	{
 		Encoder* encoder = new Encoder();
 		if (encoder->ReadImage("../DataSet/file-page" + to_string(i) + ".jpg"))
@@ -56,5 +54,5 @@ int main()
 		}
 	}
 	cout << summ << endl;
-	return 0;*/
+	return 0;
 }
