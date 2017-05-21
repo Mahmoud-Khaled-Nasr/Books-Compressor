@@ -31,6 +31,7 @@ string Rle::encode(string message)
 	}
 	result += to_string(count);
 	result += (c == '1') ? W : B;
+	result += '\n';
 	return result;
 }
 
