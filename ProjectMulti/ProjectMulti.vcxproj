@@ -122,6 +122,8 @@
     <ClInclude Include="Decoder.h" />
     <ClInclude Include="Encoder.h" />
     <ClInclude Include="Huffman.h" />
+    <ClInclude Include="Lzw.h" />
+    <ClInclude Include="Rle.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +131,8 @@
     <ClCompile Include="Decoder.cpp" />
     <ClCompile Include="Encoder.cpp" />
     <ClCompile Include="Huffman.cpp" />
+    <ClCompile Include="Lzw.cpp" />
+    <ClCompile Include="Rle.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
