@@ -2,9 +2,9 @@
 
 
 
-Utility::Utility()
+Utility::Utility(string file_name)
 {
-	char temp = '1';
+	/*char temp = '1';
 	for (unsigned int i = 0; i < 54; i++)
 	{
 		string file = "../binaryFiles/file-page";
@@ -16,7 +16,8 @@ Utility::Utility()
 		//length_of_ones_codes(binary);
 		count_ones_line(binary);
 		temp++;
-	}
+	}*/
+	read_file(file_name);
 }
 
 
@@ -49,7 +50,7 @@ vector<vector<char> >Utility::read_file(string file) {
 	in.close();
 	cout << "finsh reading" << endl;
 	cout << "the size of the array is " << result.size() << " size of one row is " << result[0].size() << endl;
-	return result;
+	m_binary=result;
 }
 
 //assuming that the file is 8n length

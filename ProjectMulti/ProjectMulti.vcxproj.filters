@@ -24,6 +24,12 @@
     <ClInclude Include="Utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Algo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Huffman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Encoder.cpp">
@@ -36,6 +42,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Algo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Huffman.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

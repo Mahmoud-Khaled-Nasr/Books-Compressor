@@ -10,7 +10,8 @@ using namespace std;
 class Utility
 {
 public:
-	Utility();
+	vector<vector<char> >m_binary;
+	Utility(string file_name);
 	~Utility();
 	vector<vector<char> > read_file(string file);
 	vector<vector<char> > binary_char_to_ascii(vector<vector<char> > binary);

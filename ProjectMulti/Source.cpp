@@ -12,7 +12,7 @@ using namespace std;
 
 int summ = 0;
 
-int main()
+/*int main()
 {
 	for (int i = 1; i <= 55; i++)
 	{
@@ -55,4 +55,8 @@ int main()
 	}
 	cout << summ << endl;
 	return 0;
+}*/
+
+int main() {
+
 }
