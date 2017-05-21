@@ -11,6 +11,7 @@ class Encoder
 	int static cnt;
 public:
 	vector<vector<bool>> bMat;
+	string messege;
 public:
 	Encoder();
 
@@ -22,4 +23,5 @@ public:
 	~Encoder();
 private:
 	void convertBinaryMatrix2BoolMatrix(Mat imageMat);
+	void convert2BoolMatrixToString();
 };

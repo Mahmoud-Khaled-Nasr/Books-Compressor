@@ -35,6 +35,8 @@ bool Encoder::ReadImage(string imagePath)
 
 	this->convertBinaryMatrix2BoolMatrix(imageMat);
 
+	this->convert2BoolMatrixToString();
+
 	return true;
 }
 
@@ -118,4 +120,27 @@ void Encoder::convertBinaryMatrix2BoolMatrix(Mat imageMat)
 		file << endl;
 	}
 	file.close();
+}
+
+void Encoder::convert2BoolMatrixToString()
+{
+	messege = "";
+	char temp;
+	int width = bMat[0].size();
+	temp = (char)(width / 256);
+	messege += temp;
+	messege += (char)(width - (int)temp * 256);
+	int length = bMat.size();
+	temp = (char)(length / 256);
+	messege += temp;
+	messege += (char)(length - (int)temp * 256);
+	messege += '\n';
+	for (int i = 0; i < bMat.size(); i++)
+	{
+		for (int j = 0; j < bMat[0].size(); j++)
+		{
+			messege += (bMat[i][j]) ? '1' : '0';
+		}
+	}
+	messege += '\n';
 }

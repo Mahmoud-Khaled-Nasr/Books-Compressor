@@ -6,6 +6,8 @@
 #include "Encoder.h"
 #include "Decoder.h"
 #include "Utility.h"
+#include "Rle.h"
+#include "Algo.h"
 
 using namespace cv;
 using namespace std;
@@ -58,5 +60,15 @@ int summ = 0;
 }*/
 
 int main() {
-
+	string message,encoded_string;
+	for (int i = 1; i <= 55; i++)
+	{
+		Encoder* encoder = new Encoder();
+		if (encoder->ReadImage("../DataSet/file-page" + to_string(i) + ".jpg"))
+		{
+			message = encoder->messege;
+			Algo* rle = new Rle();
+			encoded_string = rle->encode(message);
+		}
+	}
 }
