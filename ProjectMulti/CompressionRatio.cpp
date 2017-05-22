@@ -19,8 +19,9 @@ void CompressionRatio::update_ratio(double total_size, double encoded_size)
 	m_encoded_size += encoded_size;
 }
 
-void CompressionRatio::get_ratio()
+double CompressionRatio::get_ratio()
 {
 	cout << "the average compression ratio " << m_total_size / m_encoded_size << endl;
+	return m_total_size / m_encoded_size;
 }
 
