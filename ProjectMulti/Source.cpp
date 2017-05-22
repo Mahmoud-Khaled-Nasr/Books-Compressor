@@ -11,6 +11,7 @@
 #include "Algo.h"
 #include "Lzw.h"
 #include "Huffman.h"
+#include "RangeAlgo.h"
 #include "CompressionRatio.h"
 
 using namespace cv;
@@ -104,14 +105,17 @@ int main() {
 			Rle*rle = new Rle();
 			Huffman*huffman = new Huffman();
 			Lzw*lzw = new Lzw();
+			RangeAlgo*range = new RangeAlgo();
 			//encoding
 			encoded = rle->encode(message);
 			encoded = lzw->encode(encoded);
+			//encoded = range->encode(encoded);
 			//printing
 			encoded += '\n';
 			utility->print_encoded_string_in_file(encoded, "../Encoded files/" + x + ".txt");
 			encoded.erase(encoded.size() - 1, 1);
 			//decoding
+			//decoded = range->decode(encoded);
 			decoded = lzw->decode(encoded);
 			decoded = rle->decode(decoded);
 			

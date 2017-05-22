@@ -25,7 +25,6 @@ string RangeAlgo::encode(string message)
 	{
 		if (m_message[i] == ' ')spaces.push_back(i);
 	}
-	spaces.push_back(m_message.size());
 	for (int i = 1; i < spaces.size(); ++i)
 	{
 		string temp = "";
