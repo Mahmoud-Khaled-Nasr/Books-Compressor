@@ -31,7 +31,7 @@ public:
 	map<char, float> codeTableProbability;
 	void traverseTree(Nodee * ttree, string s);
 	void buildTree(vector<Symbol>& senderSymbols);
-	void printCodeTable(string codeTableFile);
+	void printCodeTable(string &message);
 	float CalcAvgCWLength();
 	Huffman();
 	~Huffman();
