@@ -81,8 +81,11 @@ string Huffman::encode(string message)
 	split_message(message);
 	string prefixOfMsg = "";
 	CalculateProbabilities(m_message);
+	cout << "the entropy" << CalculateEntropy()<<endl;
 	buildTree(symbols);
-	string result = m_prefix + encode_huffman(m_message);
+	string result = encode_huffman(m_message);
+	cout << "the average code length" << CalcAvgCWLength()<<endl;
+	result = m_prefix + result;
 	result += '\n';
 	return result;
 }
