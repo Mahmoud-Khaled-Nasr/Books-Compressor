@@ -8,6 +8,7 @@
 #include "Utility.h"
 #include "Rle.h"
 #include "Algo.h"
+#include "Lzw.h"
 
 using namespace cv;
 using namespace std;
@@ -61,7 +62,7 @@ int summ = 0;
 
 int main() {
 	Utility* utility = new Utility();
-	string message,encoded_string,decoded_string;
+	string message, decoded_string;
 	for (int i = 1; i <= 55; i++)
 	{
 		Encoder* encoder = new Encoder();
@@ -70,10 +71,12 @@ int main() {
 			cout << "for file " << "file-page" << to_string(i) << ".jpg" << endl;
 			message = encoder->messege;
 			Algo* rle = new Rle();
-			encoded_string = rle->encode(message);
-			utility->print_encoded_string_in_file(encoded_string,"../encoded messege/file-page"+to_string(i)+".txt");
-			decoded_string = rle->decode(encoded_string);
-			utility->print_encoded_string_in_file(decoded_string, "../temp/file-page" + to_string(i) + ".txt");
+			string rle_encoded_string = rle->encode(message);
+			Algo*lzw = new Lzw();
+			string lzw_encoded = lzw->encode(rle_encoded_string);
+			utility->print_encoded_string_in_file(rle_encoded_string,"../rle/file-page"+to_string(i)+".txt");
+			decoded_string = rle->decode(rle_encoded_string);
+			
 			if (utility->compare_strings(message, decoded_string))
 			{
 				cout << "compression success" << endl;

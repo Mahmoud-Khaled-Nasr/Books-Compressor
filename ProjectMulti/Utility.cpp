@@ -210,10 +210,10 @@ void Utility::print_encoded_string_in_file(string s,string path)
 
 bool Utility::compare_strings(string s1, string s2)
 {
-	/*if (s1.size()!=s2.size())
+	if (s1.size()!=s2.size())
 	{
 		return false;
-	}*/
+	}
 	for (int i = 5; i <s1.size(); i++)
 	{
 		if (s1[i]!=s2[i])

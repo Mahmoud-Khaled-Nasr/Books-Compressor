@@ -124,6 +124,7 @@
     <ClInclude Include="Huffman.h" />
     <ClInclude Include="Lzw.h" />
     <ClInclude Include="Rle.h" />
+    <ClInclude Include="Symbol.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
