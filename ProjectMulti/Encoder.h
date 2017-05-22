@@ -3,6 +3,11 @@
 #include<vector>
 #include<string>
 #include<opencv2/opencv.hpp>
+#include "Utility.h"
+#include "Rle.h"
+#include "Algo.h"
+#include "Lzw.h"
+#include "Huffman.h"
 using namespace std;
 using namespace cv;
 
@@ -18,7 +23,7 @@ public:
 	Encoder();
 
 	bool ReadImage(string imagePath);
-
+	
 	void runLengthEncoding(string encodingFilePath);
 	void encode2nd(string encodedFilePath, string encode2nd);
 
