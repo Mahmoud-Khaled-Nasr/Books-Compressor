@@ -10,6 +10,6 @@ public:
 	CompressionRatio();
 	~CompressionRatio();
 	void update_ratio(double total_size, double encoded_size);
-	void get_ratio();
+	double get_ratio();
 };
 

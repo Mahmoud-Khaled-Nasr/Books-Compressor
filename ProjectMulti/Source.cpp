@@ -83,8 +83,17 @@ inline void getFilesInDirectory(const string& directory, vector<string>& files) 
 }
 
 int main() {
+	ofstream out;
+	out.open("statistics");
+	if (out.fail())
+	{
+		cout << "error open the statistics " << endl;
+		exit(1);
+	}
+	out << "the compression ratio per file " << endl;
 	Utility* utility = new Utility();
 	CompressionRatio* comp = new CompressionRatio();
+	CompressionRatio* comp_per_file = new CompressionRatio();
 	//here the remainig code for function getFilesInDirectory
 	vector<string> files;
 	getFilesInDirectory("DataSet", files);
@@ -128,6 +137,9 @@ int main() {
 			{
 				cout << "compression success" << endl;
 				comp->update_ratio(message.size(), encoded.size());
+				comp_per_file->update_ratio(message.size(), encoded.size());
+				double CR = comp_per_file->get_ratio();
+				out << x << " " << CR << " number of bytes " << encoded.size() << endl;
 			}
 			else
 			{
@@ -138,6 +150,7 @@ int main() {
 		totalTime += stop_s - start_s;
 		cout << (stop_s - start_s) / double(CLOCKS_PER_SEC) * 1000 << " milliseconds "<<endl;
 	}
-	comp->get_ratio();
+	double CR = comp->get_ratio();
+	out << "average compression ratio is " << CR << endl;
 	system("pause");
 }
