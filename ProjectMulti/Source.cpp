@@ -124,15 +124,13 @@ int main() {
 			encoded = change->encode(encoded);
 			//printing
 			encoded += '\n';
-			//huffman->printCodeTable(encoded);
+			huffman->printCodeTable(encoded);
 			utility->print_encoded_string_in_file(encoded, "../Encoded files/" + x + ".txt");
-			//huffman = new Huffman();
-			//huffman->fillCodeTable(encoded);
+			huffman = new Huffman();
+			huffman->fillCodeTable(encoded);
 			encoded.erase(encoded.size() - 1, 1);
 			//decoding
-			//decoded = range->decode(encoded);
 			decoded = change->decode(encoded);
-			utility->compare_strings(decoded, tempp);
 			decoded = huffman->decode(decoded);
 			decoded = lzw->decode(decoded);
 			decoded = rle->decode(decoded);
