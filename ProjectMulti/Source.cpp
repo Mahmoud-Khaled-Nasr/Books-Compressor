@@ -81,51 +81,45 @@ inline void getFilesInDirectory(const string& directory, vector<string>& files) 
 }
 int main() {
 	Utility* utility = new Utility();
-	string message, decoded_string;
-	for (int i = 1; i <= 55; i++)
-	{
-		Encoder* encoder = new Encoder();
-		if (encoder->ReadImage("../DataSet/file-page" + to_string(i) + ".jpg"))
-		{
-			cout << "for file " << "file-page" << to_string(i) << ".jpg" << endl;
-			message = encoder->messege;
+	//here the remainig code for function getFilesInDirectory
+	vector<string> files;
+	getFilesInDirectory("DataSet", files);
+	int totalTime = 0, encoded_size = 0, total_size = 0;
+	double compressedSize = 0, originalSize = 0;
 
-			Algo* rle = new Rle();
-			Huffman* huffman = new Huffman();
-			string rle_encoded = rle->encode(message);
-			string huffman_encoded = huffman->encode(rle_encoded);
-			//Algo*lzw = new Lzw();
-			//string lzw_encoded = lzw->encode(rle_encoded_string);
-			utility->print_encoded_string_in_file(huffman_encoded,"../rle huffman/file-page"+to_string(i)+".txt");
-			string huffman_decoded = huffman->decode(huffman_encoded);
-			string rle_decoded = rle->decode(huffman_decoded);
-			
-			
-			///string huffman_decoded = huffman->decode(huffman_encoded);
-			if (utility->compare_strings(message, rle_decoded))
+	for (string x : files) 
+	{
+		int start_s = clock();
+		string name = "DataSet/" + x + ".jpg";
+		Encoder* encoder = new Encoder();
+		if (encoder->ReadImage(name))
+		{
+			cout << "for file " << name << endl;
+			string message = encoder->messege;
+			string encoded, decoded;
+			//add the compression algorithms here
+			Algo*rle = new Rle();
+			Algo*huffman = new Huffman();
+			Algo*lzw = new Lzw();
+
+			encoded = rle->encode(message);
+			decoded = rle->decode(encoded);
+
+			if (utility->compare_strings(message, decoded))
 			{
 				cout << "compression success" << endl;
+				encoded_size += message.size();
+				total_size += decoded.size();
 			}
 			else
 			{
 				cout << "compression failed" << endl;
 			}
 		}
-	}
-
-	//here the remainig code for function getFilesInDirectory
-	vector<string> files;
-	getFilesInDirectory("DataSet", files);
-	int totalTime = 0;
-	double compressedSize = 0, originalSize = 0;
-
-	for (string x : files) {
-		int start_s = clock();
-
-		string name = "DataSet/" + x + ".jpg";
-		string newimage = "Decompressed/" + x + "new" + ".jpg";
-		string data = "Compressed/" + x + "_encoded" + ".txt";
 		int stop_s = clock();
 		totalTime += stop_s - start_s;
-		cout << (stop_s - start_s) / double(CLOCKS_PER_SEC) * 1000 << " milliseconds ";
+		cout << (stop_s - start_s) / double(CLOCKS_PER_SEC) * 1000 << " milliseconds "<<endl;
+	}
+	cout << "the average compression ratio " << (double)(total_size) / encoded_size << endl;
+	system("pause");
 }
