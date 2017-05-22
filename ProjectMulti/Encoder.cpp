@@ -40,6 +40,7 @@ bool Encoder::ReadImage(string imagePath)
 	return true;
 }
 
+
 void Encoder::encode2nd(string encodedFilePath,string encode2nd)
 {
 	string s;
@@ -62,30 +63,6 @@ void Encoder::encode2nd(string encodedFilePath,string encode2nd)
 	o.open(encode2nd);
 	o << s;
 	o.close();
-}
-void Encoder::runLengthEncoding(string encodingFilePath)
-{
-	ofstream file;
-	file.open(encodingFilePath);
-	char B = 'B', W = 'W';
-	for (int i = 0; i < bMat.size(); i++)
-	{
-		int cb = 0, cw = 0, lst = 0;
-		for (int j = 0; j < bMat[i].size() - 1; j++)
-		{
-			if (bMat[i][j] != bMat[i][j + 1])
-			{
-				file << j - lst + 1 << (bMat[i][j] ? W : B);
-				lst = j + 1;
-			}
-		}
-		if (bMat[i].size() - lst > 0)
-		{
-			file << bMat[i].size() - lst << (bMat[i][bMat[i].size() - 1] ? W : B);
-		}
-		file << endl;
-	}
-	file.close();
 }
 
 
@@ -142,5 +119,4 @@ void Encoder::convert2BoolMatrixToString()
 			messege += (bMat[i][j]) ? '1' : '0';
 		}
 	}
-	messege += '\n';
 }

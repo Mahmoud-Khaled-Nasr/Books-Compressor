@@ -101,12 +101,20 @@ int main() {
 			string message = encoder->messege;
 			string encoded, decoded;
 			//add the compression algorithms here
-			Algo*rle = new Rle();
-			Algo*huffman = new Huffman();
-			Algo*lzw = new Lzw();
-
+			Rle*rle = new Rle();
+			Huffman*huffman = new Huffman();
+			Lzw*lzw = new Lzw();
+			//encoding
 			encoded = rle->encode(message);
-			decoded = rle->decode(encoded);
+			encoded = lzw->encode(encoded);
+			//printing
+			encoded += '\n';
+			utility->print_encoded_string_in_file(encoded, "../Encoded files/" + x + ".txt");
+			encoded.erase(encoded.size() - 1, 1);
+			//decoding
+			decoded = lzw->decode(encoded);
+			decoded = rle->decode(decoded);
+			
 
 			if (utility->compare_strings(message, decoded))
 			{
