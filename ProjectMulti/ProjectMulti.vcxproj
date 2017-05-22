@@ -119,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Algo.h" />
+    <ClInclude Include="ChangeToChar.h" />
     <ClInclude Include="CompressionRatio.h" />
     <ClInclude Include="Decoder.h" />
     <ClInclude Include="Encoder.h" />
@@ -132,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Algo.cpp" />
+    <ClCompile Include="ChangeToChar.cpp" />
     <ClCompile Include="CompressionRatio.cpp" />
     <ClCompile Include="Decoder.cpp" />
     <ClCompile Include="Encoder.cpp" />

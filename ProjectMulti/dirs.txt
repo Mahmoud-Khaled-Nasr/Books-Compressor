@@ -1,7 +1,7 @@
  Volume in drive C has no label.
  Volume Serial Number is A419-B29A
 
- Directory of c:\Users\MK\documents\visual studio 2015\Projects\ProjectMulti\ProjectMulti\DataSet
+ Directory of C:\Users\MK\documents\visual studio 2015\Projects\ProjectMulti\ProjectMulti\DataSet
 
 05/21/2017  05:27 PM    <DIR>          .
 05/21/2017  05:27 PM    <DIR>          ..
@@ -62,5 +62,5 @@
 04/08/2017  11:37 AM           749,633 file-page9.jpg
               55 File(s)     41,046,999 bytes
 
- Directory of c:\Users\MK\documents\visual studio 2015\Projects\ProjectMulti\ProjectMulti
+ Directory of C:\Users\MK\documents\visual studio 2015\Projects\ProjectMulti\ProjectMulti
 

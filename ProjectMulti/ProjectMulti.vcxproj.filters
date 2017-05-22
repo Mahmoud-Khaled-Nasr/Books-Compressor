@@ -48,6 +48,9 @@
     <ClInclude Include="CompressionRatio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ChangeToChar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Encoder.cpp">
@@ -78,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CompressionRatio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeToChar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

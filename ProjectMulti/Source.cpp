@@ -109,14 +109,18 @@ int main() {
 			//encoding
 			encoded = rle->encode(message);
 			encoded = lzw->encode(encoded);
-			//encoded = range->encode(encoded);
+			encoded = huffman->encode(encoded);
 			//printing
 			encoded += '\n';
+			huffman->printCodeTable(encoded);
 			utility->print_encoded_string_in_file(encoded, "../Encoded files/" + x + ".txt");
+			huffman = new Huffman();
+			huffman->fillCodeTable(encoded);
 			encoded.erase(encoded.size() - 1, 1);
 			//decoding
 			//decoded = range->decode(encoded);
-			decoded = lzw->decode(encoded);
+			decoded = huffman->decode(encoded);
+			decoded = lzw->decode(decoded);
 			decoded = rle->decode(decoded);
 			
 

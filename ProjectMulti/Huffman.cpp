@@ -60,6 +60,7 @@ void Huffman::printCodeTable(string &message)
 
 void Huffman::fillCodeTable(string &message)
 {
+	split_message(message);
 	char myChar;
 	string curSub, myCode;
 	for (int i = 0; i < m_message.size(); i++)
