@@ -33,7 +33,6 @@ string Rle::encode(string message)
 	result += to_string(count);
 	result += (c == '1') ? W : B;
 	//cout << "the total number of chars is " << sum;
-	result += '\n';
 	return result;
 }
 
@@ -60,7 +59,6 @@ string Rle::decode(string encoded_message)
 			lst = i + 1;
 		}
 	}
-	result += '\n';
 	return result;
 }
 

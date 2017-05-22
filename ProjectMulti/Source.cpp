@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 #include <fstream>
 #include <vector>
+#include<time.h>
 #include "Encoder.h"
 #include "Decoder.h"
 #include "Utility.h"
@@ -10,7 +11,7 @@
 #include "Algo.h"
 #include "Lzw.h"
 #include "Huffman.h"
-#include<time.h>
+#include "CompressionRatio.h"
 
 using namespace cv;
 using namespace std;
@@ -79,8 +80,10 @@ inline void getFilesInDirectory(const string& directory, vector<string>& files) 
 	}
 	remove("dirs.txt");
 }
+
 int main() {
 	Utility* utility = new Utility();
+	CompressionRatio* comp = new CompressionRatio();
 	//here the remainig code for function getFilesInDirectory
 	vector<string> files;
 	getFilesInDirectory("DataSet", files);
@@ -108,8 +111,7 @@ int main() {
 			if (utility->compare_strings(message, decoded))
 			{
 				cout << "compression success" << endl;
-				encoded_size += message.size();
-				total_size += decoded.size();
+				comp->update_ratio(message.size(), encoded.size());
 			}
 			else
 			{
@@ -120,6 +122,6 @@ int main() {
 		totalTime += stop_s - start_s;
 		cout << (stop_s - start_s) / double(CLOCKS_PER_SEC) * 1000 << " milliseconds "<<endl;
 	}
-	cout << "the average compression ratio " << (double)(total_size) / encoded_size << endl;
+	comp->get_ratio();
 	system("pause");
 }

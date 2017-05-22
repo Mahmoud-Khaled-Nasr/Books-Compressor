@@ -18,7 +18,6 @@ Lzw::Lzw()
 string Lzw::encode(string uncompressed)
 {
 	split_message(uncompressed);
-	m_message.erase(m_message.size() - 1, 1);
 	ofstream ofile;
 	map<string, int> dictionary;
 	string s = "";
@@ -73,7 +72,6 @@ string Lzw::encode(string uncompressed)
 	}
 	ofile.close();
 	compressed = m_prefix + compressed;
-	compressed += '\n';
 	return compressed;
 }
 
@@ -93,7 +91,6 @@ string Lzw::decode(string compressed)
 	bool finish = false;
 	int ct = 256;
 	//LOGIC STARTS!
-	m_message.erase(m_message.size() - 1, 1);
 	for (int i = 0; i < m_message.size(); i = lasts)
 	{
 		pos = m_message.find(" ", i);
