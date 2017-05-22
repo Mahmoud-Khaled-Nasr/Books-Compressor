@@ -61,7 +61,7 @@ int summ = 0;
 	return 0;
 }*/
 
-int main() {
+/*int main() {
 	Utility* utility = new Utility();
 	string message, decoded_string;
 	for (int i = 1; i <= 55; i++)
@@ -74,17 +74,19 @@ int main() {
 
 			Algo* rle = new Rle();
 			Huffman* huffman = new Huffman();
-			string rle_encoded = rle->encode(message);
-			string huffman_encoded = huffman->encode(rle_encoded);
-			//Algo*lzw = new Lzw();
-			//string lzw_encoded = lzw->encode(rle_encoded_string);
-			utility->print_encoded_string_in_file(huffman_encoded,"../rle huffman/file-page"+to_string(i)+".txt");
-			string huffman_decoded = huffman->decode(huffman_encoded);
-			string rle_decoded = rle->decode(huffman_decoded);
+			Algo* lzw = new Lzw();
+
+			string encoded = rle->encode(message);
+			encoded = lzw->encode(encoded);
+			encoded = huffman->encode(encoded);
+			utility->print_encoded_string_in_file(encoded,"../rle lzw huffman/file-page"+to_string(i)+".txt");
+			string decoded = huffman->decode(encoded);
+			decoded = lzw->decode(decoded);
+			decoded = rle->decode(decoded);
 			
 			
 			///string huffman_decoded = huffman->decode(huffman_encoded);
-			if (utility->compare_strings(message, rle_decoded))
+			if (utility->compare_strings(message, decoded))
 			{
 				cout << "compression success" << endl;
 			}
@@ -94,4 +96,8 @@ int main() {
 			}
 		}
 	}
+}*/
+
+int main() {
+
 }

@@ -111,7 +111,10 @@ string Huffman::decode(string encoded_message)
 			j++;
 		}
 	}
-	msg += '\n';
+	if (msg[msg.size()-1]!='\n')
+	{
+		msg += '\n';
+	}
 	return msg;
 }
 
