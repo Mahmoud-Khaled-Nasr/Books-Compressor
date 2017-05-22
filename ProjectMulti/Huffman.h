@@ -32,6 +32,7 @@ public:
 	void traverseTree(Nodee * ttree, string s);
 	void buildTree(vector<Symbol>& senderSymbols);
 	void printCodeTable(string &message);
+	void fillCodeTable(string &message);
 	float CalcAvgCWLength();
 	Huffman();
 	~Huffman();

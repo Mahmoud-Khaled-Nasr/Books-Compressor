@@ -58,6 +58,32 @@ void Huffman::printCodeTable(string &message)
 	message += '\n';
 }
 
+void Huffman::fillCodeTable(string &message)
+{
+	char myChar;
+	string curSub, myCode;
+	for (int i = 0; i < m_message.size(); i++)
+	{
+		if (m_message[i] == '\n')
+		{
+			for (int j = i + 1; (j < m_message.size() && m_message[j] != '\n'); j++)
+			{
+				myChar = m_message[j];
+				j += 2;
+				while (m_message[j] != '\n') {
+					myCode += m_message[j];
+					j++;
+				}
+				hesham[myCode] = myChar;
+				codeTable[myChar] = myCode;
+			}
+			m_message = m_message.substr(0, i + 1);
+			break;
+		}
+	}
+	message = m_prefix + m_message;
+}
+
 float Huffman::CalcAvgCWLength()
 {
 	float avgL = 0;
@@ -94,7 +120,7 @@ string Huffman::decode(string encoded_message)
 {
 	split_message(encoded_message);
 	string curSub;
-	string msg=m_prefix;
+	string msg = m_prefix;
 	int j = 1;
 	int k = 0;
 	for (int i = 0; i < m_message.size() && m_message[i]!='\n'; i++)
