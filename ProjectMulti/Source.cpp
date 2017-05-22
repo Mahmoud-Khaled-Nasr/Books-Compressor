@@ -73,16 +73,18 @@ int main() {
 			message = encoder->messege;
 
 			Algo* rle = new Rle();
-			string rle_encoded_string = rle->encode(message);
+			Huffman* huffman = new Huffman();
+			string rle_encoded = rle->encode(message);
+			string huffman_encoded = huffman->encode(rle_encoded);
 			//Algo*lzw = new Lzw();
 			//string lzw_encoded = lzw->encode(rle_encoded_string);
-			//utility->print_encoded_string_in_file(rle_encoded_string,"../rle/file-page"+to_string(i)+".txt");
-			string rle_decoded_string = rle->decode(rle_encoded_string);
+			utility->print_encoded_string_in_file(huffman_encoded,"../rle huffman/file-page"+to_string(i)+".txt");
+			string huffman_decoded = huffman->decode(huffman_encoded);
+			string rle_decoded = rle->decode(huffman_decoded);
 			
-			//Huffman* huffman = new Huffman();
-			//string huffman_encoded= huffman->encode(message);
+			
 			///string huffman_decoded = huffman->decode(huffman_encoded);
-			if (utility->compare_strings(message, rle_decoded_string))
+			if (utility->compare_strings(message, rle_decoded))
 			{
 				cout << "compression success" << endl;
 			}

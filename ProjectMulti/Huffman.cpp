@@ -78,36 +78,26 @@ Huffman::~Huffman()
 
 string Huffman::encode(string message)
 {
+	split_message(message);
 	string prefixOfMsg = "";
-	int cendl = 0;
-	for (int i = 0; i < message.size(); i++)
-	{
-		if (message[i] == '\n')cendl++;
-		if (cendl == 2)
-		{
-			prefixOfMsg += message[i];
-			message = message.substr(i + 1, message.size() - i - 1);
-			break;
-		}
-		prefixOfMsg += message[i];
-	}
-	CalculateProbabilities(message);
+	CalculateProbabilities(m_message);
 	buildTree(symbols);
-	string result = prefixOfMsg + encode_huffman(message);
+	string result = m_prefix + encode_huffman(m_message);
+	result += '\n';
 	return result;
 }
 
 string Huffman::decode(string encoded_message)
 {
-	
+	split_message(encoded_message);
 	string curSub;
-	string msg;
+	string msg=m_prefix;
 	int j = 1;
 	int k = 0;
-	for (int i = 0; i < encoded_message.size(); i++)
+	for (int i = 0; i < m_message.size() && m_message[i]!='\n'; i++)
 	{
-		curSub = encoded_message.substr(i, j);
-		if (hesham.count(curSub) != 0) {
+		curSub = m_message.substr(i, j);
+		if (hesham.count(curSub) > 0) {
 			msg += hesham[curSub];
 			i = k + j - 1;
 			k = i + 1;
@@ -118,6 +108,7 @@ string Huffman::decode(string encoded_message)
 			j++;
 		}
 	}
+	msg += '\n';
 	return msg;
 }
 
