@@ -12,6 +12,7 @@ class Utility
 public:
 	vector<vector<char> >m_binary;
 	Utility(string file_name);
+	Utility();
 	~Utility();
 	vector<vector<char> > read_file(string file);
 	vector<vector<char> > binary_char_to_ascii(vector<vector<char> > binary);
@@ -21,5 +22,7 @@ public:
 	void length_of_zeros_codes(vector<vector<char> > v);
 	void length_of_ones_codes(vector<vector<char> > v);
 	void count_ones_line(vector<vector<char> > v);
+	void print_encoded_string_in_file(string s, string path);
+	bool compare_strings(string s1, string s2);
 };
 

@@ -1,5 +1,9 @@
 #pragma once
+#include <iostream>
 #include "Algo.h"
+
+using namespace std;
+
 class Rle :
 	public Algo
 {
