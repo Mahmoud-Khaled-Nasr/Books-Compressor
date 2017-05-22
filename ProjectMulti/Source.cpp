@@ -13,7 +13,7 @@
 #include "Huffman.h"
 #include "RangeAlgo.h"
 #include "CompressionRatio.h"
-
+#include "ChangeToChar.h"
 using namespace cv;
 using namespace std;
 
@@ -115,20 +115,25 @@ int main() {
 			Huffman*huffman = new Huffman();
 			Lzw*lzw = new Lzw();
 			RangeAlgo*range = new RangeAlgo();
+			ChangeToChar*change = new ChangeToChar();
 			//encoding
 			encoded = rle->encode(message);
 			encoded = lzw->encode(encoded);
 			encoded = huffman->encode(encoded);
+			string tempp = encoded;
+			encoded = change->encode(encoded);
 			//printing
 			encoded += '\n';
-			huffman->printCodeTable(encoded);
+			//huffman->printCodeTable(encoded);
 			utility->print_encoded_string_in_file(encoded, "../Encoded files/" + x + ".txt");
-			huffman = new Huffman();
-			huffman->fillCodeTable(encoded);
+			//huffman = new Huffman();
+			//huffman->fillCodeTable(encoded);
 			encoded.erase(encoded.size() - 1, 1);
 			//decoding
 			//decoded = range->decode(encoded);
-			decoded = huffman->decode(encoded);
+			decoded = change->decode(encoded);
+			utility->compare_strings(decoded, tempp);
+			decoded = huffman->decode(decoded);
 			decoded = lzw->decode(decoded);
 			decoded = rle->decode(decoded);
 			
