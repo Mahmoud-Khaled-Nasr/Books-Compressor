@@ -17,6 +17,8 @@ Lzw::Lzw()
 
 string Lzw::encode(string uncompressed)
 {
+	split_message(uncompressed);
+	m_message.erase(m_message.size() - 1, 1);
 	ofstream ofile;
 	map<string, int> dictionary;
 	string s = "";
@@ -27,7 +29,7 @@ string Lzw::encode(string uncompressed)
 	string compressed = "";
 	map<string, int>::iterator i1;
 
-	for (char& c : uncompressed)
+	for (char& c : m_message)
 	{
 		/*
 		IF STRING + CHARACTER is in dictionary
@@ -70,11 +72,14 @@ string Lzw::encode(string uncompressed)
 		ofile << s;
 	}
 	ofile.close();
+	compressed = m_prefix + compressed;
+	compressed += '\n';
 	return compressed;
 }
 
 string Lzw::decode(string compressed)
 {
+	split_message(compressed);
 	ofstream ofile;
 	map<int, string> dictionary;
 	string s = "";
@@ -88,18 +93,19 @@ string Lzw::decode(string compressed)
 	bool finish = false;
 	int ct = 256;
 	//LOGIC STARTS!
-	for (int i = 0; i < compressed.size(); i = lasts)
+	m_message.erase(m_message.size() - 1, 1);
+	for (int i = 0; i < m_message.size(); i = lasts)
 	{
-		pos = compressed.find(" ", i);
+		pos = m_message.find(" ", i);
 		string s;
 
 		if (pos != -1)
 		{
-			s = compressed.substr(lasts, pos - lasts);
+			s = m_message.substr(lasts, pos - lasts);
 		}
 		else
 		{
-			s = compressed.substr(lasts, compressed.size() - lasts);
+			s = m_message.substr(lasts, m_message.size() - lasts);
 			finish = true;
 		}
 		int k = stoi(s);
@@ -151,6 +157,8 @@ string Lzw::decode(string compressed)
 		ofile << s;
 	}
 	ofile.close();
+	decompressed = m_prefix + decompressed;
+	decompressed += '\n';
 	return decompressed;
 }
 
