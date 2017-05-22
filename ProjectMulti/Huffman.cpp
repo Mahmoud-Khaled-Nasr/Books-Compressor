@@ -62,7 +62,8 @@ void Huffman::fillCodeTable(string &message)
 {
 	split_message(message);
 	char myChar;
-	string curSub, myCode;
+	string myCode;
+	message = m_prefix + m_message;
 	for (int i = 0; i < m_message.size(); i++)
 	{
 		if (m_message[i] == '\n')
@@ -72,11 +73,13 @@ void Huffman::fillCodeTable(string &message)
 				myChar = m_message[j];
 				j += 2;
 				while (m_message[j] != '\n') {
+					if (m_message[j] == ' ')break;
 					myCode += m_message[j];
 					j++;
 				}
 				hesham[myCode] = myChar;
 				codeTable[myChar] = myCode;
+				myCode = "";
 			}
 			m_message = m_message.substr(0, i + 1);
 			break;
