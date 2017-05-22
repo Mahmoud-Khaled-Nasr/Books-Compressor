@@ -9,6 +9,7 @@
 #include "Rle.h"
 #include "Algo.h"
 #include "Lzw.h"
+#include "Huffman.h"
 
 using namespace cv;
 using namespace std;
@@ -70,14 +71,18 @@ int main() {
 		{
 			cout << "for file " << "file-page" << to_string(i) << ".jpg" << endl;
 			message = encoder->messege;
+
 			Algo* rle = new Rle();
 			string rle_encoded_string = rle->encode(message);
-			Algo*lzw = new Lzw();
-			string lzw_encoded = lzw->encode(rle_encoded_string);
-			utility->print_encoded_string_in_file(rle_encoded_string,"../rle/file-page"+to_string(i)+".txt");
-			decoded_string = rle->decode(rle_encoded_string);
+			//Algo*lzw = new Lzw();
+			//string lzw_encoded = lzw->encode(rle_encoded_string);
+			//utility->print_encoded_string_in_file(rle_encoded_string,"../rle/file-page"+to_string(i)+".txt");
+			string rle_decoded_string = rle->decode(rle_encoded_string);
 			
-			if (utility->compare_strings(message, decoded_string))
+			//Huffman* huffman = new Huffman();
+			//string huffman_encoded= huffman->encode(message);
+			///string huffman_decoded = huffman->decode(huffman_encoded);
+			if (utility->compare_strings(message, rle_decoded_string))
 			{
 				cout << "compression success" << endl;
 			}

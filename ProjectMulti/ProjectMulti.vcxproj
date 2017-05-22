@@ -123,6 +123,7 @@
     <ClInclude Include="Encoder.h" />
     <ClInclude Include="Huffman.h" />
     <ClInclude Include="Lzw.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Rle.h" />
     <ClInclude Include="Symbol.h" />
     <ClInclude Include="Utility.h" />

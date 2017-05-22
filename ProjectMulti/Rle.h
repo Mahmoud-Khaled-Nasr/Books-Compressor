@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _RLE_H
+#define _RLE_H
 #include <iostream>
 #include "Algo.h"
 
@@ -14,4 +15,5 @@ public:
 	virtual string decode(string encoded_message);
 	~Rle();
 };
+#endif
 

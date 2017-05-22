@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _HUFFMAN_H
+#define _HUFFMAN_H
 #include <map>
 #include <vector>
 #include <set>
@@ -8,27 +9,11 @@
 #include <iostream>
 #include "Algo.h"
 #include "Symbol.h"
+#include "Node.h"
 
 using namespace std;
 
-struct Node {
-	// symbol only meaningful if the node is a leaf node
-	char symbol; //[Note]: symbol here should be of type char not "Symbol" struct
-				 //        because it willl be sent later to reciever
-				 //		   which should not anything else other than the symbol and codeword
-				 //		   without knowing the probabilies
-				 // the binary codeword of the symbol
-	string codeWord;
-
-	// the left node
-	Node* left;
-	//the right node
-	Node* right;
-	// probability
-	float probability;
-};
-
-
+struct Node;
 class Huffman :
 	public Algo
 {
@@ -54,3 +39,5 @@ public:
 	float CalculateEntropy();
 	string encode_huffman(string input_message);
 };
+
+#endif

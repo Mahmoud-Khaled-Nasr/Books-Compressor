@@ -99,6 +99,7 @@ string Huffman::encode(string message)
 
 string Huffman::decode(string encoded_message)
 {
+	
 	string curSub;
 	string msg;
 	int j = 1;

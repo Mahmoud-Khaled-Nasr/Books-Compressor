@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _UTILITY_H
+#define _UTILITY_H
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -26,3 +27,4 @@ public:
 	bool compare_strings(string s1, string s2);
 };
 
+#endif
