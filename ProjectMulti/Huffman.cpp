@@ -1,13 +1,13 @@
 #include "Huffman.h"
 
-bool operator< (const pair<int, Node*> p1, const pair<int, Node*> p2)
+bool operator< (const pair<int, Nodee*> p1, const pair<int, Nodee*> p2)
 {
 	// this function is used in the sorting function 
 	return p1.first < p2.first;
 }
 
 
-void Huffman::traverseTree(Node * ttree, string s)
+void Huffman::traverseTree(Nodee * ttree, string s)
 {
 	// this function traverse the tree to build the code table for symbol
 	if (ttree->left != NULL) {
@@ -24,29 +24,29 @@ void Huffman::traverseTree(Node * ttree, string s)
 
 void Huffman::buildTree(vector<Symbol>& senderSymbols)
 {
-	multiset<pair<int, Node*>> setSymbols;
+	multiset<pair<int, Nodee*>> setSymbols;
 	for (std::vector<Symbol>::iterator it = senderSymbols.begin(); it != senderSymbols.end(); ++it) {
-		Node* n = new Node();
+		Nodee* n = new Nodee();
 		n->symbol = ((Symbol)(*it)).value;
 		n->left = NULL;
 		n->right = NULL;
-		setSymbols.insert(pair<int, Node*>(((Symbol)(*it)).frequency, n));
+		setSymbols.insert(pair<int, Nodee*>(((Symbol)(*it)).frequency, n));
 		codeTableProbability.insert(pair<char, float>(n->symbol, ((Symbol)(*it)).probability));
 	}
 	while (setSymbols.size()> 1) {
-		multiset<pair<int, Node*>>::iterator firstIt = setSymbols.begin();
-		multiset<pair<int, Node*>>::iterator secondIt = ++setSymbols.begin();
-		Node * n = new Node();
-		n->left = ((pair<int, Node*>)(*firstIt)).second;
-		n->right = ((pair<int, Node*>)(*secondIt)).second;
+		multiset<pair<int, Nodee*>>::iterator firstIt = setSymbols.begin();
+		multiset<pair<int, Nodee*>>::iterator secondIt = ++setSymbols.begin();
+		Nodee * n = new Nodee();
+		n->left = ((pair<int, Nodee*>)(*firstIt)).second;
+		n->right = ((pair<int, Nodee*>)(*secondIt)).second;
 		n->probability = 0.0;
-		int freq = ((pair<int, Node*>)(*firstIt)).first + ((pair<int, Node*>)(*secondIt)).first;
+		int freq = ((pair<int, Nodee*>)(*firstIt)).first + ((pair<int, Nodee*>)(*secondIt)).first;
 		setSymbols.erase(firstIt);
 		setSymbols.erase(secondIt);
-		setSymbols.insert(pair<int, Node*>(freq, n));
+		setSymbols.insert(pair<int, Nodee*>(freq, n));
 	}
 	if (setSymbols.size() == 1)
-		tree = ((pair<int, Node*>)(*setSymbols.begin())).second;
+		tree = ((pair<int, Nodee*>)(*setSymbols.begin())).second;
 }
 
 void Huffman::printCodeTable(string codeTableFile)

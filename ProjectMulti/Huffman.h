@@ -13,13 +13,15 @@
 
 using namespace std;
 
-struct Node;
+
+
 class Huffman :
 	public Algo
 {
 public:
+	Nodee * tree;
 	vector<Symbol> symbols;
-	Node* tree;
+	
 
 	// you can add a map data member that mapes: <symbol char, its codeword> 
 	// or use the tree only (as you like)
@@ -27,7 +29,7 @@ public:
 	map<string, char> hesham;
 	map<char, string> codeTable;
 	map<char, float> codeTableProbability;
-	void traverseTree(Node * ttree, string s);
+	void traverseTree(Nodee * ttree, string s);
 	void buildTree(vector<Symbol>& senderSymbols);
 	void printCodeTable(string codeTableFile);
 	float CalcAvgCWLength();
