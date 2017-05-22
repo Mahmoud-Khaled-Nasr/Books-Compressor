@@ -3,8 +3,7 @@
 #include "Algo.h"
 using namespace std;
 
-class Lzw :
-	public Algo
+class Lzw : public Algo
 {
 public:
 	Lzw();

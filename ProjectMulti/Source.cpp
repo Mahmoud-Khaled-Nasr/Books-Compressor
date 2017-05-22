@@ -76,6 +76,7 @@ int main() {
 			Huffman* huffman = new Huffman();
 			string rle_encoded = rle->encode(message);
 			string huffman_encoded = huffman->encode(rle_encoded);
+			huffman->printCodeTable(huffman_encoded);
 			//Algo*lzw = new Lzw();
 			//string lzw_encoded = lzw->encode(rle_encoded_string);
 			utility->print_encoded_string_in_file(huffman_encoded,"../rle huffman/file-page"+to_string(i)+".txt");
@@ -94,4 +95,6 @@ int main() {
 			}
 		}
 	}
+	system("pause");
+	return 0;
 }

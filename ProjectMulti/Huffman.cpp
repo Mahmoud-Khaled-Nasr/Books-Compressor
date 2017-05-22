@@ -49,13 +49,13 @@ void Huffman::buildTree(vector<Symbol>& senderSymbols)
 		tree = ((pair<int, Nodee*>)(*setSymbols.begin())).second;
 }
 
-void Huffman::printCodeTable(string codeTableFile)
+void Huffman::printCodeTable(string &message)
 {
-	ofstream outfile;
-	outfile.open(codeTableFile, std::ofstream::out);
-	for (std::map<char, string>::iterator it = codeTable.begin(); it != codeTable.end(); it++) {
-		outfile << ((pair<char, string>)(*it)).first << " " << ((pair<char, string>)(*it)).second << endl;
+	for (auto i : this->codeTable) {
+		message += i.first;
+		message += " " + i.second + " ";
 	}
+	message += '\n';
 }
 
 float Huffman::CalcAvgCWLength()
@@ -86,7 +86,7 @@ string Huffman::encode(string message)
 	string result = encode_huffman(m_message);
 	cout << "the average code length" << CalcAvgCWLength()<<endl;
 	result = m_prefix + result;
-	result += '\n';
+	
 	return result;
 }
 
@@ -111,7 +111,6 @@ string Huffman::decode(string encoded_message)
 			j++;
 		}
 	}
-	msg += '\n';
 	return msg;
 }
 
