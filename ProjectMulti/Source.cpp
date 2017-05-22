@@ -8,37 +8,17 @@
 #include "Utility.h"
 #include "Rle.h"
 #include "Algo.h"
-#include <windows.h>
-#include <cstdio>
-#include<sstream>
-#include <time.h>     
+#include "Lzw.h"
+#include "Huffman.h"
 
 using namespace cv;
 using namespace std;
 
 int summ = 0;
-inline void getFilesInDirectory(const string& directory, vector<string>& files) {
-	string s = "dir " + directory + " -b > dirs.txt";
-	system(s.c_str());
 
-	ifstream fin("dirs.txt");
-
-	while (getline(fin, s)) {
-		if (s.length() >= 4 && s.substr(s.length() - 4, 4) == ".jpg") {
-			string k = "", y;
-			for (int i = s.length() - 5; i >= 0 && s[i] != ' '; --i) {
-				k += s[i];
-			}
-			reverse(k.begin(), k.end());
-			files.push_back(k);
-		}
-	}
-	remove("dirs.txt");
-}
-
-int main()
+/*int main()
 {
-	/*for (int i = 1; i <= 55; i++)
+	for (int i = 1; i <= 55; i++)
 	{
 		Encoder* encoder = new Encoder();
 		if (encoder->ReadImage("../DataSet/file-page" + to_string(i) + ".jpg"))
@@ -81,21 +61,30 @@ int main()
 	return 0;
 }*/
 
+int main() {
 	Utility* utility = new Utility();
-	string message,encoded_string,decoded_string;
-	/*for (int i = 1; i <= 55; i++)
+	string message, decoded_string;
+	for (int i = 1; i <= 55; i++)
 	{
 		Encoder* encoder = new Encoder();
 		if (encoder->ReadImage("../DataSet/file-page" + to_string(i) + ".jpg"))
 		{
 			cout << "for file " << "file-page" << to_string(i) << ".jpg" << endl;
 			message = encoder->messege;
+
 			Algo* rle = new Rle();
-			encoded_string = rle->encode(message);
-			utility->print_encoded_string_in_file(encoded_string,"../encoded messege/file-page"+to_string(i)+".txt");
-			decoded_string = rle->decode(encoded_string);
-			utility->print_encoded_string_in_file(decoded_string, "../temp/file-page" + to_string(i) + ".txt");
-			if (utility->compare_strings(message, decoded_string))
+			Huffman* huffman = new Huffman();
+			string rle_encoded = rle->encode(message);
+			string huffman_encoded = huffman->encode(rle_encoded);
+			//Algo*lzw = new Lzw();
+			//string lzw_encoded = lzw->encode(rle_encoded_string);
+			utility->print_encoded_string_in_file(huffman_encoded,"../rle huffman/file-page"+to_string(i)+".txt");
+			string huffman_decoded = huffman->decode(huffman_encoded);
+			string rle_decoded = rle->decode(huffman_decoded);
+			
+			
+			///string huffman_decoded = huffman->decode(huffman_encoded);
+			if (utility->compare_strings(message, rle_decoded))
 			{
 				cout << "compression success" << endl;
 			}
@@ -104,25 +93,5 @@ int main()
 				cout << "compression failed" << endl;
 			}
 		}
-	}
-	*/
-	vector<string> files;
-	getFilesInDirectory("DataSet", files);
-	int totalTime = 0;
-	double compressedSize = 0, originalSize = 0;
-
-	for (string x : files) {
-		int start_s = clock();
-
-		string name = "DataSet/" + x + ".jpg";
-		string newimage = "Decompressed/" + x + "new" + ".jpg";
-		string data = "Compressed/" + x + "_encoded" + ".txt";
-
-		
-		//hna byt7sb el time ely by7sl feh compression
-		int stop_s = clock();
-		totalTime += stop_s - start_s;
-		cout << (stop_s - start_s) / double(CLOCKS_PER_SEC) * 1000 << " milliseconds ";
-		
 	}
 }

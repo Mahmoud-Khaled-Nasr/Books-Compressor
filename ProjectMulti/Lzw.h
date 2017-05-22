@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _LZW_H
+#define _LZW_H
 #include "Algo.h"
 using namespace std;
 
@@ -11,4 +12,5 @@ public:
 	string decode(string compressed);
 	~Lzw();
 };
+#endif
 

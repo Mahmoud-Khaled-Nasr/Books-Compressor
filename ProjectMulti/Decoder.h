@@ -1,3 +1,5 @@
+#ifndef _Decoder_H
+#define _Decoder_H
 #include<string>
 #include<vector>
 using namespace std;
@@ -12,3 +14,4 @@ public:
 	void writeDecodedImage(string decodedFilePath);
 	~Decoder();
 };
+#endif

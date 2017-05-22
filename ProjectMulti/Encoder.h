@@ -1,3 +1,5 @@
+#ifndef _ENCODER_H
+#define _ENCODER_H
 #include<vector>
 #include<string>
 #include<opencv2/opencv.hpp>
@@ -25,3 +27,4 @@ private:
 	void convertBinaryMatrix2BoolMatrix(Mat imageMat);
 	void convert2BoolMatrixToString();
 };
+#endif

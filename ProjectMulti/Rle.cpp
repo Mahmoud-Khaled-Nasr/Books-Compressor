@@ -9,16 +9,14 @@ Rle::Rle()
 string Rle::encode(string message)
 {
 	int sum = 0;
-
-	int start_index=5;
-	string result = message.substr(0, start_index);
-	int width = (int)message[0] * 256 + (int)message[1];
+	split_message(message);
+	string result = m_prefix;// message.substr(0, start_index);
 	char B = 'B', W = 'W';
-	char c = message[start_index];
+	char c = m_message[0];
 	int count = 1;
-	for (int i = start_index; i < message.size()-1 && message[i+1]!='\n'; i++)
+	for (int i = 0; i < m_message.size()-1 && m_message[i+1]!='\n'; i++)
 	{
-		if (c==message[i+1])
+		if (c== m_message[i+1])
 		{
 			count++;
 		}
@@ -28,7 +26,7 @@ string Rle::encode(string message)
 			result+= to_string(count);
 			result += (c == '1') ? W : B;
 			count = 1;
-			c = message[i + 1];
+			c = m_message[i + 1];
 		}
 	}
 	sum += count;
@@ -42,23 +40,22 @@ string Rle::encode(string message)
 
 string Rle::decode(string encoded_message)
 {
-	int start_index = 5;
-	string result = encoded_message.substr(0, start_index);
-	int width = (int)encoded_message[0] * 256 + (int)encoded_message[1];
+	split_message(encoded_message);
+	string result = m_prefix;
 	char B = 'B', W = 'W';
-	int lst = start_index;
-	for (int i = start_index; i < encoded_message.size() && encoded_message[i]!='\n'; i++)
+	int lst = 0;
+	for (int i = 0; i < m_message.size() && m_message[i]!='\n'; i++)
 	{
-		if (encoded_message[i] == W)
+		if (m_message[i] == W)
 		{
-			for (int j = 0; j < stoi(encoded_message.substr(lst, i - lst)); j++)
+			for (int j = 0; j < stoi(m_message.substr(lst, i - lst)); j++)
 				result+='1';
 
 			lst = i + 1;
 		}
-		else if (encoded_message[i] == B)
+		else if (m_message[i] == B)
 		{
-			for (int j = 0; j < stoi(encoded_message.substr(lst, i - lst)); j++)
+			for (int j = 0; j < stoi(m_message.substr(lst, i - lst)); j++)
 				result += '0';
 			lst = i + 1;
 		}
